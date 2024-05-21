@@ -1,0 +1,58 @@
+(footprint "Sparkgap_2020-08-11" (version 20210824) (generator pcbnew) (layer "F.Cu")
+  (tedit 613002A5)
+  (attr exclude_from_pos_files exclude_from_bom)
+  (fp_text reference "SG12" (at -0.2 6) (layer "F.SilkS") hide
+    (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp ce37b572-4bcb-491c-95b0-30433ee71497)
+  )
+  (fp_text value "Sparkgap_2020-08-11" (at -0.1 4.4) (layer "F.Fab") hide
+    (effects (font (size 1 1) (thickness 0.15)))
+    (tstamp dd6b2b82-7098-428d-acbb-3b444af248d3)
+  )
+  (fp_poly (pts
+      (xy 0.125 0.6)
+      (xy 0.8 0.4)
+      (xy 0.125 0.2)
+      (xy 0.8 0)
+      (xy 0.125 -0.2)
+      (xy 0.8 -0.4)
+      (xy 0.125 -0.6)
+      (xy 0.7 -0.8)
+      (xy 0.8 -0.8)
+      (xy 0.8 0.8)
+      (xy 0.7 0.8)
+    ) (layer "F.Cu") (width 0.05) (fill solid) (tstamp 177e28c4-7cf7-403e-bef5-6ea10ce8819a))
+  (fp_poly (pts
+      (xy -0.125 -0.6)
+      (xy -0.8 -0.4)
+      (xy -0.125 -0.2)
+      (xy -0.8 0)
+      (xy -0.125 0.2)
+      (xy -0.8 0.4)
+      (xy -0.125 0.6)
+      (xy -0.7 0.8)
+      (xy -0.8 0.8)
+      (xy -0.8 -0.8)
+      (xy -0.7 -0.8)
+    ) (layer "F.Cu") (width 0.05) (fill solid) (tstamp 3f743077-2604-423c-b0ba-b100f0def934))
+  (fp_poly (pts
+      (xy 0.5 0.9)
+      (xy -0.5 0.9)
+      (xy -0.5 -0.9)
+      (xy 0.5 -0.9)
+    ) (layer "F.Mask") (width 0.1) (fill solid) (tstamp 181aec82-55c6-4027-8d8c-b317af3e8cf7))
+  (pad "1" smd roundrect (at -0.7 0) (size 0.3 1.7) (layers "F.Cu") (roundrect_rratio 0.25) (tstamp a71d42be-1a68-4774-92cf-be08de2e93fe))
+  (pad "2" smd roundrect (at 0.7 0) (size 0.3 1.7) (layers "F.Cu") (roundrect_rratio 0.25) (tstamp 143f68fa-1f1b-477f-9a43-28c640720d31))
+  (group "" (id 08591c04-63ed-49ac-89d2-4bee93320899)
+    (members
+      143f68fa-1f1b-477f-9a43-28c640720d31
+      177e28c4-7cf7-403e-bef5-6ea10ce8819a
+    )
+  )
+  (group "" (id 5f8372c7-7bbb-45ce-bb9b-54307bc0e064)
+    (members
+      3f743077-2604-423c-b0ba-b100f0def934
+      a71d42be-1a68-4774-92cf-be08de2e93fe
+    )
+  )
+)

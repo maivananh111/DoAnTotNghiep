@@ -1,0 +1,435 @@
+(kicad_sch
+	(version 20231120)
+	(generator "eeschema")
+	(generator_version "8.0")
+	(uuid "284b1fcf-d184-445b-9357-720601909768")
+	(paper "A4")
+	(lib_symbols)
+	(wire
+		(pts
+			(xy 114.3 86.36) (xy 129.54 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "05e06b0d-0de6-4a85-8a3e-522320227d3e")
+	)
+	(wire
+		(pts
+			(xy 182.88 91.44) (xy 167.64 91.44)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2b7dcf6a-0c0d-44b6-b005-6357b42da9b3")
+	)
+	(wire
+		(pts
+			(xy 182.88 109.22) (xy 167.64 109.22)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "2d951991-2e0e-44a0-ba61-d843b4227599")
+	)
+	(wire
+		(pts
+			(xy 182.88 99.06) (xy 167.64 99.06)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3add67c4-0a3e-4a97-b62c-635d3b9d8de4")
+	)
+	(wire
+		(pts
+			(xy 114.3 72.39) (xy 129.54 72.39)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "525c3e18-a145-425f-9d11-e8334b4926a2")
+	)
+	(wire
+		(pts
+			(xy 114.3 77.47) (xy 129.54 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "52cb77a8-fd51-4a19-b0ef-91a882aec704")
+	)
+	(wire
+		(pts
+			(xy 114.3 104.14) (xy 129.54 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "894bc662-7920-4edd-9a01-b697721d8f3b")
+	)
+	(wire
+		(pts
+			(xy 182.88 96.52) (xy 167.64 96.52)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "918cfeb1-2ec6-45b8-a2d9-c0d341bbc76e")
+	)
+	(wire
+		(pts
+			(xy 182.88 106.68) (xy 167.64 106.68)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a188858c-b966-4ba6-94ba-bcbb3b724480")
+	)
+	(sheet
+		(at 129.54 69.85)
+		(size 38.1 44.45)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 255 194 1.0000)
+		)
+		(uuid "48af77e0-cdde-43f6-b4bf-5fa2ea4bd1ba")
+		(property "Sheetname" "RAK3172_LoRa"
+			(at 129.54 69.1384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "RAK3172_LoRa.kicad_sch"
+			(at 129.54 114.8846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "~{RAK_RESET}" input
+			(at 167.64 96.52 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "58c8728e-d667-4700-ba4b-9d6cd3f5c287")
+		)
+		(pin "UART2_RX" input
+			(at 167.64 109.22 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "2beaef20-0682-4afe-ad3c-b8d0f0569dc1")
+		)
+		(pin "UART2_TX" output
+			(at 167.64 106.68 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "b5ccddb9-46c9-4efd-b86c-5809a2008b9a")
+		)
+		(pin "BATT_READ" input
+			(at 129.54 72.39 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "73b82851-951f-4fd9-9500-1ab6c51ed4bd")
+		)
+		(pin "RAK_BOOT" input
+			(at 167.64 99.06 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "139b20fd-7b27-46b4-8757-4c810bad7640")
+		)
+		(pin "ESP_PWRON" output
+			(at 167.64 91.44 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "79550741-cd20-4773-a116-8803e86903bd")
+		)
+		(pin "SENSOR_PWRON" output
+			(at 129.54 77.47 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "1518203b-0aad-4ce2-a31a-053d77af5bb3")
+		)
+		(pin "ANALOG_IN" input
+			(at 129.54 104.14 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "53ea82b7-2da1-484c-b2a6-bae240bd12b3")
+		)
+		(pin "ACT_LED" input
+			(at 129.54 86.36 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "c6081a25-e814-4d36-ada9-0519f775b3ef")
+		)
+		(instances
+			(project "Node_Analog"
+				(path "/284b1fcf-d184-445b-9357-720601909768"
+					(page "2")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 182.88 88.9)
+		(size 31.75 25.4)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 255 194 1.0000)
+		)
+		(uuid "5b8d0302-722b-4467-a53d-c0e56441d81a")
+		(property "Sheetname" "ESP32-C3_BLE"
+			(at 182.88 88.1884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ESP32-C3_BLE.kicad_sch"
+			(at 182.88 114.8846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "UART1_TX" output
+			(at 182.88 109.22 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "eb0ad489-0307-4c96-a92e-9291d178db82")
+		)
+		(pin "UART1_RX" input
+			(at 182.88 106.68 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "84e43786-4156-4426-905a-be46381a932a")
+		)
+		(pin "OTA_BOOT" output
+			(at 182.88 99.06 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "968854a2-998d-4532-9954-eeb269a36ae2")
+		)
+		(pin "OTA_RST" output
+			(at 182.88 96.52 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "afdaea90-86bf-4f91-9775-d2d9c7438977")
+		)
+		(pin "ESP_PWRON" input
+			(at 182.88 91.44 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "2ffac406-b435-4cd6-ba22-3333a3028dcc")
+		)
+		(instances
+			(project "Node_Analog"
+				(path "/284b1fcf-d184-445b-9357-720601909768"
+					(page "3")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 88.9 69.85)
+		(size 25.4 19.05)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 255 194 1.0000)
+		)
+		(uuid "bc34c4bf-ac8b-42c1-a77a-46366754cbef")
+		(property "Sheetname" "PSU"
+			(at 88.9 69.1384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "PSU.kicad_sch"
+			(at 88.9 89.4846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "VBAT_MONITOR" output
+			(at 114.3 72.39 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "cf34ab67-9a52-4619-b8aa-f4e332cad4b5")
+		)
+		(pin "5V_EN" input
+			(at 114.3 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "182d1bde-4826-40d7-9471-13c6e55239af")
+		)
+		(pin "ACT_LED" output
+			(at 114.3 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "1d1e003a-b7f9-47a8-9948-30ed36b82e0b")
+		)
+		(instances
+			(project "Node_Analog"
+				(path "/284b1fcf-d184-445b-9357-720601909768"
+					(page "4")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 88.9 95.25)
+		(size 25.4 19.05)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 255 194 1.0000)
+		)
+		(uuid "c8c30bef-47ec-451e-a233-6b8349087bfc")
+		(property "Sheetname" "Analog"
+			(at 88.9 94.5384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "Analog.kicad_sch"
+			(at 88.9 114.8846 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "ANALOG_OUT" output
+			(at 114.3 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "ce19fe8a-e5f4-48a3-9f27-b64839406ed7")
+		)
+		(instances
+			(project "Node_Analog"
+				(path "/284b1fcf-d184-445b-9357-720601909768"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+)

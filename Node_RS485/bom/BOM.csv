@@ -1,0 +1,54 @@
+null,References,Value,Footprint,Quantity,Links
+1,"C1, C3, C4, C11, C16, C19, C20, C21, C22, C23, C28, C29",100nF,C_0603,12,https://www.thegioiic.com/tu-gom-0603-100nf-0-1uf-50v
+2,"C2, C5, C8, C9, C15, C30, C31, C32, C33",1uF,C_0603,9,https://www.thegioiic.com/tu-gom-0603-1uf-25v
+3,"C10, C12, C13, C14, C34, C35",10uF,C_0603,6,https://www.thegioiic.com/tu-gom-0603-10uf-25v
+4,"C24, C25",DNP,C_0603,2,
+5,"C26, C27",10pF,C_0603,2,https://www.thegioiic.com/tu-gom-0603-10pf-50v
+6,C6,470uF/50V,CP_Elec_8x10.5,1,https://www.thegioiic.com/tu-nhom-smd-220uf-35v-8x10-5mm
+7,C7,100uF,C_Elec_6.3x7.7,1,https://www.thegioiic.com/tu-nhom-smd-100uf-25v-6-3x7-7mm
+8,"R2, R3, R13, R22, R25, R26, R27, R31, R36, R37",10K,R_0603,10,https://www.thegioiic.com/dien-tro-10-kohm-0603-1-
+9,"R1, R4, R5, R6, R7, R30, R35, R38",10R,R_0603,8,https://www.thegioiic.com/dien-tro-10-ohm-0603-1-
+10,"R12, R21, R24, R32",1K,R_0603,4,https://www.thegioiic.com/dien-tro-1-kohm-0603-1-
+11,"R8, R9, R10",4K7,R_0603,3,https://www.thegioiic.com/dien-tro-4-7-kohm-0603-1-
+12,"R14, R15",1K2,R_0603,2,https://www.thegioiic.com/dien-tro-1-2-kohm-0603-1-
+13,"R16, R23",100R,R_0603,2,https://www.thegioiic.com/dien-tro-100-ohm-0603-1-
+14,"R17, R19",560K,R_0603,2,https://www.thegioiic.com/dien-tro-560-kohm-0603-1-
+15,"R18, R20",100K,R_0603,2,https://www.thegioiic.com/dien-tro-100-kohm-0603-1-
+16,"R28, R29",5K1,R_0603,2,https://www.thegioiic.com/dien-tro-5-6-kohm-0603-1-
+17,R11,120R,R_0603,1,https://www.thegioiic.com/dien-tro-120-ohm-0603-1-
+18,R39,51K,R_0603,1,https://www.thegioiic.com/dien-tro-56-kohm-0603-1-
+19,R40,2K7,R_0603,1,https://www.thegioiic.com/dien-tro-2-7-kohm-0603-5-
+20,L1,68uH,L_12x12mm_H8mm,1,https://www.thegioiic.com/cdrh127-cuon-cam-dan-smd-1280-680-68uh-3-2a
+21,L2,2.2uH,L_Bourns_SRN6045TA,1,https://www.thegioiic.com/cuon-cam-dan-smd-cd53-5852-2r2-2-2uh-3-5a
+22,L4,2.2nH,L_0603,1,https://www.thegioiic.com/vhf160808h2n2st-cuon-cam-2-2nh-0603-1a
+23,L5,22uH,L_Bourns_SRN6045TA,1,https://www.thegioiic.com/cuon-cam-dan-smd-cd53-5852-220-22uh-1-5a
+24,"D1, D2, D3",SMAJ5.0CA,D_SMA_TVS,3,https://www.thegioiic.com/smaj28a-e3-61-tvs-diode-28v-45-4v-do214ac
+25,"D5, D7",SS34,D_SMA,2,https://www.thegioiic.com/ss34-sma-diode-schottky-3a
+26,D4,Z12V,D_MiniMELF,1,https://www.thegioiic.com/zmm12-diode-zener-12v-500mw-smd
+27,D6,LED_Dual_AKAK,LED_HOUSING_LH32K051F,1,https://www.thegioiic.com/bo-chi-thi-2-led-xanh-la-do-3mm-de-nhua-han-pcb
+28,U1,RAK3172,RAK3172,1,
+29,U2,SP3485EN,SOIC-8,1,https://www.thegioiic.com/max3485ed-ic-transceiver-half-duplex-sop-8
+30,U3,BQ24075RGT,VQFN-16_3x3_PAD-VIAS,1,
+31,U4,XL1509-5.0,SOIC-8,1,https://www.thegioiic.com/xl1509-5-0e1-ic-on-ap-5v-2a-8-soic
+32,U5,TPS63000,DRC-0010J,1,
+33,U7,DW01A,SOT23-6,1,https://www.thegioiic.com/dw01a-ic-bao-ve-pin-1-cell-sot-23-6
+34,U8,FS8205A,TSSOP-8_4.4x3mm_P0.65mm,1,https://www.thegioiic.com/fs8205a-mosfet-dual-n-channel-20v-6a-8-tssop
+35,U9,ESP32-C3,QFN-32_5x5_PAD-VIAS,1,https://linhkienthuduc.com/san-pham/ic-esp32-c3-chip-truyen-nhan-wifi-ble-gia-re-esp32-c3fn4/
+36,U10,USBLC6-2SC6,SOT23-6,1,https://icdayroi.com/usblc6-2sc6-tvs-diode-5-25v-17v-sot23-6
+37,U11,MT3608,SOT23-6,1,https://www.thegioiic.com/mt3608-ic-dieu-chinh-tang-ap-2a-sot-23-6
+38,Y1,40MHz,Crystal_3225_4P_1-4,1,https://www.thegioiic.com/thach-anh-40mhz-3225-4-chan-smd
+39,"F1, F2",Fuse,F_1812,2,https://www.thegioiic.com/mf-msmf200-2-cau-chi-tu-phuc-hoi-1812-8v-2a
+40,SW1,RAK-RESET,Switch_Tactile_6x6_Horizontal,1,https://www.thegioiic.com/nut-nhan-6x6mm-cao-5mm-4-chan-xuyen-lo-chinh-ngang
+41,SW2,ESP-RESET,SW_SPST_CK,1,https://www.thegioiic.com/nut-nhan-3x6mm-cao-2-5mm-2-chan-smd-dau-do
+42,SW3,ESP-BOOT,SW_SPST_CK,1,https://www.thegioiic.com/nut-nhan-3x6mm-cao-2-5mm-2-chan-smd-dau-do
+43,SW4,USER_BTN,Switch_Tactile_6x6_Horizontal,1,https://www.thegioiic.com/nut-nhan-6x6mm-cao-5mm-4-chan-xuyen-lo-chinh-ngang
+44,"Q1, Q4",SI2300,SOT23-3,2,https://www.thegioiic.com/si2300ds-mosfet-kenh-n-30v-3-6a-sot-23
+45,"Q2, Q5",SI2301,SOT23-3,2,https://www.thegioiic.com/si2301ds-mosfet-kenh-p
+46,AE1,2.4GHz,Texas_SWRA117D_2.4GHz_Right,1,
+47,BT1,Battery_18650,XH_2P_2.54mm_Vertical,1,https://www.thegioiic.com/dau-xh-2-54mm-2-chan-thang-xuyen-lo
+48,Q3,APM4015P,TO-252-2,1,https://www.thegioiic.com/apm4015p-mosfet-kenh-p-40v-45a-to-252
+49,J1,RAK_DEBUG,PinHeader_2x04_P2.54mm_Vertical,1,https://www.thegioiic.com/hang-rao-duc-doi-2-54mm-80-chan-2-hang-cao-11-2mm-xuyen-lo-chan-ma-vang
+50,J2,CONN_RS485,"PhoenixContact_MC_1,5_4-G-3.81_1x04_P3.81mm_Horizontal",1,https://www.thegioiic.com/kf-3-81-4-r-terminal-block-plug-in-han-pcb-4-chan-cong-3-81mm-300v-10a
+51,J3,CONN_PWRIN,"PhoenixContact_MC_1,5_2-G-3.81_1x02_P3.81mm_Horizontal",1,https://www.thegioiic.com/kf-3-81-2-r-terminal-block-plug-in-han-pcb-2-chan-cong-3-81mm-300v-10a
+52,J4,CONN_ESP_PROG,XH_6P_2.54mm_Vertical,1,https://www.thegioiic.com/dau-xh-2-54mm-6-chan-thang-xuyen-lo
+53,J5,USB_C_Receptacle_USB2.0_16P,USB-C_SMD_1,1,https://www.thegioiic.com/cong-usb-cai-3-1-type-c-16-chan-thang-dan-smd

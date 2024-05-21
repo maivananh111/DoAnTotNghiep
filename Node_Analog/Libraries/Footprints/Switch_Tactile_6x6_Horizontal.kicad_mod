@@ -1,0 +1,217 @@
+(footprint "Switch_Tactile_6x6_Horizontal"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 0 -2.5 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "c6291b7c-7b6a-45d6-a51c-5fc5b85aec91")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.2)
+				(bold yes)
+			)
+		)
+	)
+	(property "Value" "Switch_Tactile_6x6_Horizontal"
+		(at 0 1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "0812cfc3-73c3-4bda-ac2c-2122899d6aa9")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "a92b0168-6361-47a2-9b58-132a94c46f74")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "dd14afad-16e0-4123-8653-8841b4537e51")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "3ae4235a-112a-413e-b494-1493f3cfd5ef")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -5 -4)
+		(end 5 2.5)
+		(stroke
+			(width 0.25)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "ad6240a5-b449-4b86-a816-bda2ec6847d5")
+	)
+	(fp_line
+		(start -5.2 -4.2)
+		(end 5.2 -4.2)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "b0c5937b-91ce-4fa4-8595-3e448121c06f")
+	)
+	(fp_line
+		(start -5.2 2.7)
+		(end -5.2 -4.2)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "6dee024e-65c5-4a1f-b766-9c85f5233c31")
+	)
+	(fp_line
+		(start -1.7 2.7)
+		(end -5.2 2.7)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "c6c6f171-f966-47cf-8aa5-e56ba8538daf")
+	)
+	(fp_line
+		(start -1.7 2.7)
+		(end -1.7 4.4)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "7f583f06-5555-4df8-9ffd-6e3ac21c7177")
+	)
+	(fp_line
+		(start -1.7 4.4)
+		(end 1.7 4.4)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "e0bb5e6c-08b7-4a4e-8aaa-8271a9d463c4")
+	)
+	(fp_line
+		(start 1.7 4.4)
+		(end 1.7 2.7)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "6269df7a-10fc-49cb-a2f0-ceafbd80a49e")
+	)
+	(fp_line
+		(start 5.2 -4.2)
+		(end 5.2 2.7)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "e2765961-862e-4f21-b69a-d15ce38ff13b")
+	)
+	(fp_line
+		(start 5.2 2.7)
+		(end 1.7 2.7)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "4bfe9fc7-de2f-4e20-a1cd-2c69009e5f64")
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 2.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "0ba51bc1-fef6-4c6b-9253-8267647a6eb5")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at -2.25 0)
+		(size 2 2)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "a62ec4e5-4abe-471d-b312-61e784773704")
+	)
+	(pad "2" thru_hole circle
+		(at 2.25 0)
+		(size 2 2)
+		(drill 1.1)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "41ac413d-9e42-4ddb-96ad-991940a37f8b")
+	)
+	(pad "3" thru_hole circle
+		(at -3.5 -2.5)
+		(size 2.5 2.5)
+		(drill 1.4)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "398f1270-4f50-41f5-af06-28d331861971")
+	)
+	(pad "3" thru_hole circle
+		(at 3.5 -2.5)
+		(size 2.5 2.5)
+		(drill 1.4)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "0309dcd3-34d7-4e4a-b8b5-aa5d94d83a2f")
+	)
+	(model "${KIPRJMOD}/Libraries/3dmodels/Tactile Switch 6x6 mm.STEP"
+		(offset
+			(xyz 0 -2.5 4)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
+)

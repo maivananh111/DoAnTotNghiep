@@ -1,0 +1,243 @@
+(footprint "LED_HOUSING_LH32K051F"
+	(version 20240108)
+	(generator "pcbnew")
+	(generator_version "8.0")
+	(layer "F.Cu")
+	(property "Reference" "REF**"
+		(at 1.25 -4.6 0)
+		(unlocked yes)
+		(layer "F.SilkS")
+		(uuid "cde18291-d1f3-4fae-8613-631aff86a736")
+		(effects
+			(font
+				(size 0.8 0.8)
+				(thickness 0.2)
+				(bold yes)
+			)
+		)
+	)
+	(property "Value" "LED_HOUSING_LH32K051F"
+		(at 0 1 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "79ffd1ff-fa8a-4ba2-a6e4-eb02d9b5674a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Footprint" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "430c1632-1097-4119-8182-4159ae374ff2")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Datasheet" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "63915630-22e8-4bac-823a-a1d360da368d")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(property "Description" ""
+		(at 0 0 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(hide yes)
+		(uuid "ce4038a1-8ae3-42ad-98f4-6f0304495729")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(attr through_hole)
+	(fp_rect
+		(start -0.88 -3.95)
+		(end 3.42 5.05)
+		(stroke
+			(width 0.1)
+			(type default)
+		)
+		(fill none)
+		(layer "F.SilkS")
+		(uuid "fd383e89-e13f-4b3a-b7fc-ce92f4521beb")
+	)
+	(fp_line
+		(start -0.96 -4)
+		(end -0.96 5.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "87ec1b96-8e68-4972-a9c3-031142e0a15b")
+	)
+	(fp_line
+		(start -0.96 -4)
+		(end 3.5 -4)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "23ff7d34-5259-455f-8ad4-c41bf84866ed")
+	)
+	(fp_line
+		(start -0.95 5.15)
+		(end 0 5.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "2fc729e9-c518-4d5e-a2f6-d73bb350653c")
+	)
+	(fp_line
+		(start 0 5.15)
+		(end 0 7.65)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "5dd84083-e8b8-44bf-aec2-739b9b451bae")
+	)
+	(fp_line
+		(start 0 7.65)
+		(end 2.55 7.65)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "e5be01a5-2e4d-4c27-83ca-d674cae0b93e")
+	)
+	(fp_line
+		(start 2.55 5.15)
+		(end 2.55 7.65)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "32d14088-6a88-41ec-924b-21e6bda57747")
+	)
+	(fp_line
+		(start 3.5 -4)
+		(end 3.5 5.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "33f825ef-0dc9-49ec-9ca1-71018664ed6f")
+	)
+	(fp_line
+		(start 3.5 5.15)
+		(end 2.55 5.15)
+		(stroke
+			(width 0.05)
+			(type default)
+		)
+		(layer "F.CrtYd")
+		(uuid "b2daf132-62af-4a7f-854d-17921413e82f")
+	)
+	(fp_text user "G"
+		(at 0.7 -1.9 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "20015574-6fd8-4e5e-8128-fe86a953f79a")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(fp_text user "${REFERENCE}"
+		(at 0 2.5 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "62061b00-e73c-43ee-9fa4-6f8a49255c10")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+		)
+	)
+	(fp_text user "R"
+		(at 0.7 0.6 0)
+		(unlocked yes)
+		(layer "F.Fab")
+		(uuid "fe45b4ad-9add-43e1-8c35-4757737cfe40")
+		(effects
+			(font
+				(size 1 1)
+				(thickness 0.15)
+			)
+			(justify left bottom)
+		)
+	)
+	(pad "1" thru_hole circle
+		(at 0 0)
+		(size 1.5 1.5)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "d47061bc-96f2-4356-adda-69c67700ca6e")
+	)
+	(pad "2" thru_hole circle
+		(at 2.54 0)
+		(size 1.5 1.5)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "2a69c536-2a75-4810-9419-767e90705866")
+	)
+	(pad "3" thru_hole circle
+		(at 0 -2.54)
+		(size 1.5 1.5)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "0bbbdab4-8658-4801-86a5-0994efb15471")
+	)
+	(pad "4" thru_hole circle
+		(at 2.54 -2.54)
+		(size 1.5 1.5)
+		(drill 0.8)
+		(layers "*.Cu" "*.Mask")
+		(remove_unused_layers no)
+		(uuid "7534424b-a440-49e8-b652-08be4c8271a4")
+	)
+	(model "${KIPRJMOD}/Libraries/3dmodels/DUAL LED HOUSING 3mm.stp"
+		(offset
+			(xyz 3.45 2.9 0)
+		)
+		(scale
+			(xyz 1 1 1)
+		)
+		(rotate
+			(xyz -90 0 0)
+		)
+	)
+)
