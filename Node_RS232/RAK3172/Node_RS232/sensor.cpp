@@ -47,7 +47,7 @@ char *ligo_sp_rs232_response(void){
 
     char *resp = (char *)malloc(65);
     memset(resp, 0, 65);
-    sprintf(resp, "{\"temperature\":%d,\"relative_level\":%d,\"frequency\":%lu}", (int)(buf[3]*100), (int)((buf[4]<<8 | buf[5])*100), (buf[6]<<24 | buf[7]<<16 | buf[8]<<8 | buf[9]));
+    sprintf(resp, "{\"temperature\":%d,\"relative_level\":%d}", (int)(buf[3]*100), (int)((buf[4]<<8 | buf[5])*100));
 
     return resp;
 }

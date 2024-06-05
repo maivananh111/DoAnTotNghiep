@@ -18,3 +18,8 @@ void lorawan_init(lorawan_config_t *pconfig);
 void lorawan_join(void);
 void lorawan_start(void);
 void lorawan_send(uint8_t *buffer, uint8_t length);
+bool lorawan_out_of_network(void);
+
+
+
+

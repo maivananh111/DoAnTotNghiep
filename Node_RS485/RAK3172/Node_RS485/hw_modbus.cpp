@@ -16,26 +16,43 @@ void mb_txmode(void);
 void mb_rxmode(void);
 
 
-
 /**
-* RS485 ModBus.
+* Board power control.
+*/
+void power_high_performance(void){
+    pinMode(POWER_SAVE_ENABLE, OUTPUT);
+    digitalWrite(POWER_SAVE_ENABLE, HIGH);
+}
+void power_save(void){
+    digitalWrite(POWER_SAVE_ENABLE, LOW);
+}
+/**
+* RS485 power control.
 */
 void mb_txmode(void){
-    pinMode(MB_DIR_PIN, OUTPUT);
-    digitalWrite(MB_DIR_PIN, HIGH);
+    pinMode(MB_DE_PIN, OUTPUT);
+    pinMode(MB_RE_PIN, OUTPUT);
+    digitalWrite(MB_DE_PIN, HIGH);
+    digitalWrite(MB_RE_PIN, HIGH);
 }
 void mb_rxmode(void){
-    pinMode(MB_DIR_PIN, OUTPUT);
-    digitalWrite(MB_DIR_PIN, LOW);
+    pinMode(MB_DE_PIN, OUTPUT);
+    pinMode(MB_RE_PIN, OUTPUT);
+    digitalWrite(MB_DE_PIN, LOW);
+    digitalWrite(MB_RE_PIN, LOW);
 }
 void sensor_pwron(void){
     pinMode(SENSOR_PWR_PIN, OUTPUT);
+    pinMode(SENSOR_CIRCUIT_PWR_PIN, OUTPUT);
     digitalWrite(SENSOR_PWR_PIN, HIGH);
+    digitalWrite(SENSOR_CIRCUIT_PWR_PIN, HIGH);
     delay(500);
 }
 void sensor_pwroff(void){
     digitalWrite(SENSOR_PWR_PIN, LOW);
+    digitalWrite(SENSOR_CIRCUIT_PWR_PIN, LOW);
     pinMode(SENSOR_PWR_PIN, INPUT);
+    pinMode(SENSOR_CIRCUIT_PWR_PIN, INPUT);
 }
 /**
 * WiFi module.
@@ -69,25 +86,29 @@ float batt_voltage(void){
     
     for(int i=0; i<ANALOG_SAMPLE_NUMBER; i++)
         x += analogRead(BAT_SENSE_PIN);
+    x /= ANALOG_SAMPLE_NUMBER;
 
-    return 0.00544 * (float)((float)x/ANALOG_SAMPLE_NUMBER);
+    return 0.0054 * (float)x - 0.02;
 }
 
 
 void brd_hw_init(void (*btn_wakeup_handler)(void)){   
+    power_high_performance();
+    
     Serial.begin(115200, RAK_AT_MODE);
     Serial.println("Startup");
 
     pinMode(LED_ACT_PIN, OUTPUT);
     pinMode(USR_BTN_PIN, INPUT);
+
+    digitalWrite(POWER_SAVE_ENABLE, HIGH);
     attachInterrupt(USR_BTN_PIN, btn_wakeup_handler, FALLING);
     analogReadResolution(12);
-
-
 }
 
 void mb_hw_init(void){
-    pinMode(MB_DIR_PIN, INPUT);
+    pinMode(MB_DE_PIN, INPUT);
+    pinMode(MB_RE_PIN, INPUT);
     sensor_pwroff();
 
     mb.preTransmission(mb_txmode);
@@ -98,7 +119,8 @@ void mb_reqdata(void){
     if(inprocess == 0){
         inprocess = 1;
         
-        pinMode(MB_DIR_PIN, INPUT);
+        pinMode(MB_DE_PIN, INPUT);
+        pinMode(MB_RE_PIN, INPUT);
         sensor_pwron();
         
         for(uint8_t id=0; id<mb_desc_set_size; id++){
@@ -145,7 +167,8 @@ void mb_reqdata(void){
         }
 
         sensor_pwroff();
-        pinMode(MB_DIR_PIN, INPUT);
+        pinMode(MB_DE_PIN, INPUT);
+        pinMode(MB_RE_PIN, INPUT);
         MB_UART.end();
 
         inprocess = 0;

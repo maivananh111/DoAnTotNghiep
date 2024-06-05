@@ -44,7 +44,7 @@ bool config_node(config_node_t *conf_data){
     send_eui_to_wf();
     timeout = millis();
     while(!Serial.available()){
-        if(millis() - timeout > 5000){
+        if(millis() - timeout > 2000){
             send_eui_to_wf();
             timeout = millis();
         }
@@ -55,7 +55,7 @@ bool config_node(config_node_t *conf_data){
     while (Serial.available()) {
         cfg_str += Serial.readStringUntil((char)0xFE);
     }
-    Serial.println();
+    Serial.println(cfg_str);
 
     /**
      * Parse config data.

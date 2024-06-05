@@ -15,6 +15,8 @@ typedef struct{
 } rs232_sensor_desc_t;          // Sensor rs232 protocol descriptor.
 
 
+void power_high_performance(void);
+void power_save(void);
 
 void wf_pwron(void);
 void wf_pwroff(void);

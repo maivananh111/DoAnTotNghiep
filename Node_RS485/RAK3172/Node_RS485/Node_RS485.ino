@@ -1,5 +1,4 @@
 
-#include "ModbusMaster.h"
 #include "Arduino_JSON.h"
 #include "config.h"
 #include "config_node.h"
@@ -9,8 +8,14 @@
 
 
 
-bool viewmode = false;   
-unsigned long last_action_tick = 0; 
+#define SEND_VIEW_DATA    false
+#define SEND_LORAWAN_DATA true
+
+
+bool viewmode = false;    
+unsigned long last_send_time = 0; 
+unsigned long goto_sleep_time = 0; 
+unsigned long sleeped_time = 0; 
 uint8_t viewmode_flag = 0;
 config_node_t cfg;
 
@@ -39,7 +44,7 @@ void setup(void) {
     mb_hw_init();
     mb_config_desc(cfg.mbdesc);
 
-    last_action_tick = millis();
+    last_send_time = millis();
 }
 
 /*
@@ -47,20 +52,39 @@ void setup(void) {
 */
 
 void loop(void) {
-    if(millis() - last_action_tick > cfg.lorawan.period){
-        last_action_tick = millis();
-        get_sensor_data_and_send(true);
+    if(lorawan_out_of_network()) api.system.reboot();
+    
+    if(millis() - last_send_time > cfg.lorawan.period){
+        last_send_time = millis();
+        get_sensor_data_and_send(SEND_LORAWAN_DATA);
     }
+    if(viewmode == false){   
+        delay(1000);
 
-    if(viewmode == true){
-        if(viewmode_flag == 1){
-            get_sensor_data_and_send(false);
-            viewmode_flag = 0;
+        goto_sleep_time = millis();
+        sleeped_time = 0;
+
+        if((goto_sleep_time - last_send_time) < cfg.lorawan.period){
+            uint32_t sleep_period = cfg.lorawan.period - (goto_sleep_time - last_send_time);
+
+            sleep:
+            if(sleep_period > sleeped_time){
+                api.system.sleep.all(sleep_period - sleeped_time);
+            
+                sleeped_time += millis() - goto_sleep_time;
+                if(sleeped_time < sleep_period) 
+                    goto sleep;
+                else 
+                    sleeped_time = 0;
+            }
         }
     }
-    else{
-        delay(1000);
-        api.system.sleep.all(cfg.lorawan.period-2000);
+
+    if(viewmode == true){ 
+        if(viewmode_flag == 1){
+            get_sensor_data_and_send(SEND_VIEW_DATA);
+            viewmode_flag = 0;
+        }
     }
 }
 
@@ -82,38 +106,29 @@ void usr_btn_handler(void){
             Serial.println("Enter view mode.");
             wf_pwron(); 
 
-            if (api.system.timer.create(VIEWDATA_TIMER, viewdata_timer_handler, RAK_TIMER_PERIODIC) != true)
-                Serial.println("Creating timer VIEWDATA_TIMER failed.");
-            if (api.system.timer.start(VIEWDATA_TIMER, DATAVIEW_PERIOD+500, (void *)VIEWDATA_TIMER) != true)
-                Serial.println("Starting timer VIEWDATA_TIMER failed.");
-
-            if (api.system.timer.create(VIEWLED_TIMER, viewled_timer_handler, RAK_TIMER_PERIODIC) != true)
-                Serial.println("Creating timer VIEWLED_TIMER failed.");
-            if (api.system.timer.start(VIEWLED_TIMER, 100, (void *)VIEWLED_TIMER) != true)
-                Serial.println("Starting timer VIEWLED_TIMER failed.");
+            api.system.timer.create(VIEWDATA_TIMER, viewdata_timer_handler, RAK_TIMER_PERIODIC);
+            api.system.timer.start(VIEWDATA_TIMER, DATAVIEW_PERIOD, (void *)VIEWDATA_TIMER);
+            api.system.timer.create(VIEWLED_TIMER, viewled_timer_handler, RAK_TIMER_PERIODIC);
+            api.system.timer.start(VIEWLED_TIMER, 100, (void *)VIEWLED_TIMER);
         }
         else{
             Serial.println("Enter normal mode.");
             wf_pwroff();
 
-            if (api.system.timer.stop(VIEWDATA_TIMER) != true)
-                Serial.println("Stopping timer VIEWDATA_TIMER failed.");
-            if (api.system.timer.stop(VIEWLED_TIMER) != true)
-                Serial.println("Stopping timer VIEWLED_TIMER failed.");
+            api.system.timer.stop(VIEWDATA_TIMER);
+            api.system.timer.stop(VIEWLED_TIMER);
         }
     }
 }
 
 void viewdata_timer_handler(void *param){
-    if((int)param == VIEWDATA_TIMER) {
+    if((int)param == VIEWDATA_TIMER)
         viewmode_flag = 1;
-    }
 }
 
 void viewled_timer_handler(void *param){
-    if((int)param == VIEWLED_TIMER) {
+    if((int)param == VIEWLED_TIMER) 
         led_toggle();
-    }
 }
 
 
@@ -178,12 +193,10 @@ void get_sensor_data_and_send(bool lorawan_is_true){
     viewdata = create_send_data();
     led_off();
 
-    if(lorawan_is_true){
-        lorawan_send((uint8_t *)viewdata, strlen(viewdata));
-    }
-    else{
+    if(lorawan_is_true)
+        lorawan_send((uint8_t *)viewdata, strlen(viewdata)); 
+    else
         Serial.write(viewdata);
-    }
 
     if(viewdata) free(viewdata);
 }

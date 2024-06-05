@@ -41,20 +41,25 @@ bool config_node(config_node_t *conf_data){
     /**
      * Send request config data to ESP32.
     */
-    send_eui_to_wf();
+   uint8_t out_cnt = 0;
     timeout = millis();
+    send_eui_to_wf();
     while(!Serial.available()){
-        if(millis() - timeout > 5000){
+        if(millis() - timeout > 2000){
+            out_cnt++;
+            if(out_cnt == 5) 
+                return false;
+            
             send_eui_to_wf();
             timeout = millis();
         }
     }
+
     /**
      * Read config data from ESP32.
     */
-    while (Serial.available()) {
+    while (Serial.available())
         cfg_str += Serial.readStringUntil((char)0xFE);
-    }
     Serial.println();
 
     /**

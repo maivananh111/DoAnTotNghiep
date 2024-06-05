@@ -5,14 +5,18 @@
 
 
 
+static uint8_t send_fail_cnt = 0;
+static bool lora_sent = false;
+
 void joinCallback(int32_t status){
     Serial.printf("Join status: %d\r\n", status);
 }
 
 void sendCallback(int32_t status){
     if (status != RAK_LORAMAC_STATUS_OK){
-        Serial.printf("Sending failed, %d\r\n", status);
+        Serial.printf("Sending failed, error: %d\r\n", status);
     }
+    lora_sent = true;
 }
 
 void recvCallback(SERVICE_LORA_RECEIVE_T *data){
@@ -25,11 +29,18 @@ void recvCallback(SERVICE_LORA_RECEIVE_T *data){
     }
 }
 
+bool lorawan_out_of_network(void){
+    if(send_fail_cnt >= MAX_SEND_FAIL_CNT) 
+        return true;
+
+    return false;
+}
+
 
 
 void lorawan_init(lorawan_config_t *pconfig){
     if(api.lorawan.nwm.get() != 1){
-        api.lorawan.nwm.set(1);
+        api.lorawan.nwm.set();
         api.system.reboot();
     }
 
@@ -94,8 +105,17 @@ void lorawan_start(void){
 
 void lorawan_send(uint8_t *buffer, uint8_t length){
     if(!api.lorawan.send(length, (uint8_t *)buffer, 2, true, 5)) {
-        Serial.println("Sending failed");
+        Serial.println("Sending failed...");
+        send_fail_cnt++;
     }
+    else{
+        do{
+            delay(1000);
+        } while(!lora_sent);
+        
+        send_fail_cnt = 0;
+    }
+    lora_sent = false;
 }
 
 

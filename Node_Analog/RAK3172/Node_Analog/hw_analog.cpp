@@ -12,19 +12,33 @@ static double analog_param_a = 0.0, analog_param_b = 0.0;
 void mb_txmode(void);
 void mb_rxmode(void);
 
-
-
+/**
+* Board power control.
+*/
+void power_high_performance(void){
+    digitalWrite(POWER_SAVE_ENABLE, LOW);
+}
+void power_save(void){
+    digitalWrite(POWER_SAVE_ENABLE, HIGH);
+}
+/**
+* Sensor power control.
+*/
 void sensor_pwron(void){
     pinMode(SENSOR_PWR_PIN, OUTPUT);
+    pinMode(SENSOR_CIRCUIT_PWR_PIN, OUTPUT);
     digitalWrite(SENSOR_PWR_PIN, HIGH);
+    digitalWrite(SENSOR_CIRCUIT_PWR_PIN, HIGH);
     delay(1000);
 }
 void sensor_pwroff(void){
+    digitalWrite(SENSOR_CIRCUIT_PWR_PIN, LOW);
     digitalWrite(SENSOR_PWR_PIN, LOW);
+    pinMode(SENSOR_CIRCUIT_PWR_PIN, INPUT);
     pinMode(SENSOR_PWR_PIN, INPUT);
 }
 /**
-* WiFi module.
+* WiFi module power control.
 */
 void wf_pwron(void){
     delay(500);
@@ -40,9 +54,11 @@ void wf_pwroff(void){
 * LED indicator.
 */
 void led_on(void){
+    pinMode(LED_ACT_PIN, OUTPUT);
     digitalWrite(LED_ACT_PIN, LOW);
 }
 void led_off(void){
+    pinMode(LED_ACT_PIN, INPUT);
     digitalWrite(LED_ACT_PIN, HIGH);
 }
 void led_toggle(void){
@@ -55,8 +71,9 @@ float batt_voltage(void){
     
     for(int i=0; i<ANALOG_SAMPLE_NUMBER; i++)
         x += analogRead(BAT_SENSE_PIN);
+    x /= ANALOG_SAMPLE_NUMBER;
 
-    return 0.00544 * (float)((float)x/ANALOG_SAMPLE_NUMBER);
+    return 0.0054 * (float)x - 0.02;
 }
 
 float get_analog(void){
@@ -67,8 +84,10 @@ float get_analog(void){
 
     for(int i=0; i<ANALOG_SAMPLE_NUMBER; i++)
         x += analogRead(SENSOR_ANALOG_PIN);
-
-    float ana = ((float)x/ANALOG_SAMPLE_NUMBER) * ANALOG_CALIB_PARAM_A + ANALOG_CALIB_PARAM_B;
+    x /= ANALOG_SAMPLE_NUMBER;
+    
+    float ana = (float)x * ANALOG_CALIB_PARAM_A + ANALOG_CALIB_PARAM_B;
+    // Serial.printf("ADC = %d, VOL = %.02f\r\n", x, ana);
 
     float ret = ana * (float)analog_param_a + (float)analog_param_b;
 
@@ -79,10 +98,12 @@ float get_analog(void){
 
 
 void brd_hw_init(void (*btn_wakeup_handler)(void)){   
+    // pinMode(POWER_SAVE_ENABLE, OUTPUT);
+    // power_high_performance();
+    
     Serial.begin(115200, RAK_AT_MODE);
     Serial.println("Startup");
 
-    pinMode(LED_ACT_PIN, OUTPUT);
     pinMode(USR_BTN_PIN, INPUT);
     attachInterrupt(USR_BTN_PIN, btn_wakeup_handler, FALLING);
 

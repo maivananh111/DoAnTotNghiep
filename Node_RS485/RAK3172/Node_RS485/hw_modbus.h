@@ -36,6 +36,9 @@ void brd_hw_init(void (*btn_wakeup_handler)(void));
 void sensor_pwron(void);
 void sensor_pwroff(void);
 
+void power_high_performance(void);
+void power_save(void);
+
 void mb_hw_init(void);
 void mb_config_desc(String json_desc);
 void mb_reqdata(void);

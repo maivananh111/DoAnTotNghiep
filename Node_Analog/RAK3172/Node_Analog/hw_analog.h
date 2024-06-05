@@ -24,8 +24,8 @@ void brd_hw_init(void (*btn_wakeup_handler)(void));
 void hw_analog_init(String json_calib);
 float get_analog(void);
 
-
-
+void power_high_performance(void);
+void power_save(void);
 
 
 // {

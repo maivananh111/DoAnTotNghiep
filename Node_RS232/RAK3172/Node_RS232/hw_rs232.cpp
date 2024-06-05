@@ -20,14 +20,31 @@ rs232_sensor_desc_t *sensor_desc_set[RS232_SENSOR_SET_MAX_SIZE] = {0};
 rs232_sensor_desc_t *rs232_desc = NULL;
 
 
+/**
+* Board power control.
+*/
+void power_high_performance(void){
+    pinMode(POWER_SAVE_ENABLE, OUTPUT);
+    digitalWrite(POWER_SAVE_ENABLE, HIGH);
+}
+void power_save(void){
+    digitalWrite(POWER_SAVE_ENABLE, LOW);
+}
+/**
+* RS232 power control.
+*/
 void sensor_pwron(void){
     pinMode(SENSOR_PWR_PIN, OUTPUT);
+    pinMode(SENSOR_CIRCUIT_PWR_PIN, OUTPUT);
     digitalWrite(SENSOR_PWR_PIN, HIGH);
-    delay(500);
+    digitalWrite(SENSOR_CIRCUIT_PWR_PIN, HIGH);
+    delay(5000);
 }
 void sensor_pwroff(void){
     digitalWrite(SENSOR_PWR_PIN, LOW);
+    digitalWrite(SENSOR_CIRCUIT_PWR_PIN, LOW);
     pinMode(SENSOR_PWR_PIN, INPUT);
+    pinMode(SENSOR_CIRCUIT_PWR_PIN, INPUT);
 }
 /**
 * WiFi module.
@@ -61,12 +78,15 @@ float batt_voltage(void){
     
     for(int i=0; i<ANALOG_SAMPLE_NUMBER; i++)
         x += analogRead(BAT_SENSE_PIN);
+    x /= ANALOG_SAMPLE_NUMBER;
 
-    return 0.00544 * (float)((float)x/ANALOG_SAMPLE_NUMBER);
+    return 0.0054 * (float)x - 0.02;
 }
 
 
 void brd_hw_init(void (*btn_wakeup_handler)(void)){   
+    // power_high_performance();
+
     Serial.begin(115200, RAK_AT_MODE);
     Serial.println("Startup");
 
@@ -76,8 +96,10 @@ void brd_hw_init(void (*btn_wakeup_handler)(void)){
     analogReadResolution(12);
 
     Serial1.begin(9600, RAK_CUSTOM_MODE);
-
     sensor_desc_set[0] = &ligo_sp_rs232;
+
+    // pinMode(SENSOR_PWR_PIN, OUTPUT);
+    // digitalWrite(SENSOR_PWR_PIN, HIGH);
 }
 
 char *rs232_reqdata(void){
