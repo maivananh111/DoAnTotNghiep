@@ -119,8 +119,6 @@ void mb_reqdata(void){
     if(inprocess == 0){
         inprocess = 1;
         
-        pinMode(MB_DE_PIN, INPUT);
-        pinMode(MB_RE_PIN, INPUT);
         sensor_pwron();
         
         for(uint8_t id=0; id<mb_desc_set_size; id++){
@@ -211,6 +209,7 @@ void mb_config_desc(String json_desc){
         if (child.hasOwnProperty("fcode")) mb_desc_set[i].fcode = strtol((const char *)child["fcode"], NULL, 16);
         if (child.hasOwnProperty("reg"))   mb_desc_set[i].reg   = strtol((const char *)child["reg"],   NULL, 16);
         if (child.hasOwnProperty("rqty"))  mb_desc_set[i].rqty  = (int)child["rqty"];
+        if (child.hasOwnProperty("div"))   mb_desc_set[i].div   = (int)child["div"];
     }
 }
 

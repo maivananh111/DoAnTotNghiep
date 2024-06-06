@@ -7,7 +7,7 @@
 
 
 static double analog_param_a = 0.0, analog_param_b = 0.0;
-
+static char desc[50] = {0};  // Data descriptor string.
 
 void mb_txmode(void);
 void mb_rxmode(void);
@@ -54,11 +54,9 @@ void wf_pwroff(void){
 * LED indicator.
 */
 void led_on(void){
-    pinMode(LED_ACT_PIN, OUTPUT);
     digitalWrite(LED_ACT_PIN, LOW);
 }
 void led_off(void){
-    pinMode(LED_ACT_PIN, INPUT);
     digitalWrite(LED_ACT_PIN, HIGH);
 }
 void led_toggle(void){
@@ -76,11 +74,10 @@ float batt_voltage(void){
     return 0.0054 * (float)x - 0.02;
 }
 
-float get_analog(void){
+float analog_get(void){
     uint32_t x = 0;
     
     sensor_pwron();
-    delay(500);
 
     for(int i=0; i<ANALOG_SAMPLE_NUMBER; i++)
         x += analogRead(SENSOR_ANALOG_PIN);
@@ -88,7 +85,6 @@ float get_analog(void){
     
     float ana = (float)x * ANALOG_CALIB_PARAM_A + ANALOG_CALIB_PARAM_B;
     // Serial.printf("ADC = %d, VOL = %.02f\r\n", x, ana);
-
     float ret = ana * (float)analog_param_a + (float)analog_param_b;
 
     sensor_pwroff();
@@ -98,19 +94,17 @@ float get_analog(void){
 
 
 void brd_hw_init(void (*btn_wakeup_handler)(void)){   
-    // pinMode(POWER_SAVE_ENABLE, OUTPUT);
-    // power_high_performance();
-    
     Serial.begin(115200, RAK_AT_MODE);
     Serial.println("Startup");
 
+    pinMode(LED_ACT_PIN, OUTPUT);
     pinMode(USR_BTN_PIN, INPUT);
     attachInterrupt(USR_BTN_PIN, btn_wakeup_handler, FALLING);
 
     analogReadResolution(12);
 }
 
-void hw_analog_init(String json_calib){
+void hw_analog_config(String json_calib){
     double max, min;
     double high = ANALOG_VAL_HIGH, low = ANALOG_VAL_LOW;
     JSONVar root = JSON.parse(json_calib);
@@ -120,14 +114,27 @@ void hw_analog_init(String json_calib){
         return;
     }
 
-    if (!root.hasOwnProperty("max") || !root.hasOwnProperty("min")) return;
+    if (!root.hasOwnProperty("max") || !root.hasOwnProperty("min") || !root.hasOwnProperty("desc")
+#ifdef NODE_0_10V
+         || !root.hasOwnProperty("vl")  || !root.hasOwnProperty("vh")
+#endif
+    ) return;
+
     max = (double)root["max"];
     min = (double)root["min"];
+#ifdef NODE_0_10V
+    high = (double)root["vh"];
+    low  = (double)root["vl"];
+#endif
+    memcpy(desc, (const char*)root["desc"], strlen((const char*)root["desc"]));
 
     analog_param_a = (max - min) / (high - low);
     analog_param_b = min - low * analog_param_a;
 }
 
+char *analog_get_desc(void){
+    return desc;
+}
 
 
 

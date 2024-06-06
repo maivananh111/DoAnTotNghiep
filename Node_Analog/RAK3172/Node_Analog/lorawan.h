@@ -13,10 +13,32 @@ typedef struct {
     uint32_t period = 30000;
 } lorawan_config_t;
 
+typedef enum{
+    LoRaWAN_IDLE_SLEEP = 0,
+    LoRaWAN_IDLE_NORMAL = 1,
+} lorawan_idle_mode_t;
 
-void lorawan_init(lorawan_config_t *pconfig);
-void lorawan_join(void);
-void lorawan_rejoin(void);
-void lorawan_start(void);
-void lorawan_send(uint8_t *buffer, uint8_t length);
-bool lorawan_out_of_network(void);
+typedef enum{
+    LoRaWAN_JOIN_ERROR = -2,
+    LoRaWAN_SEND_ERROR = -1,
+    LoRaWAN_START,
+    LoRaWAN_CONFIG,
+    LoRaWAN_JOINING,
+    LoRaWAN_JOINED,
+    LoRaWAN_DEVSTATUS,
+    LoRaWAN_IDLE,
+    LoRaWAN_SEND,
+    LoRaWAN_SENT
+} lorawan_state_t;
+
+typedef void (*lorawan_event_handler_fn_t)(lorawan_state_t, void *);
+
+
+bool lorawan_init(lorawan_config_t *pconfig);
+bool lorawan_register_event_handler(lorawan_event_handler_fn_t pfn, void *pparam);
+
+void lorawan_set_idle_mode(lorawan_idle_mode_t idlemode);
+void lorawan_set_send_param(uint8_t *pdata, uint8_t len, bool req_confirm);
+int lorawan_get_join_state(void);
+
+void lorawan_handler(void);

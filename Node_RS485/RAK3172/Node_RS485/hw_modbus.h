@@ -18,6 +18,7 @@ typedef struct{
     uint16_t *rdata   = NULL; // Session read data.
     uint16_t wdata    = 0x00; // Session write data.
     uint8_t  res      = 0;    // Session result.
+    int      div      = 100;  // Data divide.
 } mb_desc_t; // Modbus descriptor.
 
 

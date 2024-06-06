@@ -110,7 +110,7 @@ bool config_node(config_node_t *conf_data){
         if(dev_class == "C") conf_data->lorawan.dev_class = RAK_LORA_CLASS_C;
         else                 conf_data->lorawan.dev_class = RAK_LORA_CLASS_A;
     }
-    if (wan.hasOwnProperty("period")) conf_data->lorawan.period = (int)wan["period"];
+    if (wan.hasOwnProperty("period")) conf_data->lorawan.period = (unsigned long)wan["period"];
 
     conf_data->calib = JSON.stringify(calib);
 

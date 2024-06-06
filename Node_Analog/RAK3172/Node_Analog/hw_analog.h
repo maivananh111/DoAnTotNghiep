@@ -6,7 +6,6 @@
 
 
 
-
 void wf_pwron(void);
 void wf_pwroff(void);
 
@@ -21,8 +20,9 @@ float batt_voltage(void);
 
 void brd_hw_init(void (*btn_wakeup_handler)(void));
 
-void hw_analog_init(String json_calib);
-float get_analog(void);
+void hw_analog_config(String json_calib);
+float analog_get(void);
+char *analog_get_desc(void);
 
 void power_high_performance(void);
 void power_save(void);
