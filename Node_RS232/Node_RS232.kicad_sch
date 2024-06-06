@@ -27,6 +27,16 @@
 	)
 	(wire
 		(pts
+			(xy 114.3 97.79) (xy 129.54 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "320d8404-25e3-4474-ada0-65050324d936")
+	)
+	(wire
+		(pts
 			(xy 182.88 99.06) (xy 167.64 99.06)
 		)
 		(stroke
@@ -34,6 +44,16 @@
 			(type default)
 		)
 		(uuid "3add67c4-0a3e-4a97-b62c-635d3b9d8de4")
+	)
+	(wire
+		(pts
+			(xy 114.3 77.47) (xy 129.54 77.47)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "50dc4ec5-0b1b-452f-a5e5-3da3e0fab627")
 	)
 	(wire
 		(pts
@@ -87,13 +107,13 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 77.47) (xy 129.54 77.47)
+			(xy 114.3 81.28) (xy 129.54 81.28)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "b0d7c5ce-1896-45ed-a366-4ddeffcffb07")
+		(uuid "ddbf2bf6-024b-4c3e-bb97-966cf4cc62e2")
 	)
 	(wire
 		(pts
@@ -235,6 +255,26 @@
 			)
 			(uuid "7508be51-d33e-4d31-a9c5-76ce5b5bba13")
 		)
+		(pin "~{POWER_SAVE}" output
+			(at 129.54 81.28 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "24d88ca9-c513-4877-8497-f32b1388a67d")
+		)
+		(pin "RS232_PWREN" output
+			(at 129.54 97.79 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "df84fcf4-05be-4d5d-a201-1d390197645c")
+		)
 		(instances
 			(project "Node_RS232"
 				(path "/284b1fcf-d184-445b-9357-720601909768"
@@ -371,16 +411,6 @@
 			)
 			(uuid "cf34ab67-9a52-4619-b8aa-f4e332cad4b5")
 		)
-		(pin "5V_EN" input
-			(at 114.3 77.47 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-			(uuid "182d1bde-4826-40d7-9471-13c6e55239af")
-		)
 		(pin "LED_ACT" bidirectional
 			(at 114.3 86.36 0)
 			(effects
@@ -390,6 +420,26 @@
 				(justify right)
 			)
 			(uuid "89b90d7a-9e4c-4295-a594-0a1b119d93f4")
+		)
+		(pin "9V_EN" input
+			(at 114.3 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "34629c20-267d-498c-b1d7-d23dba1e7c44")
+		)
+		(pin "~{POWER_SAVE}" input
+			(at 114.3 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "ce869d38-609d-4334-b536-f516e7bf54cd")
 		)
 		(instances
 			(project "Node_RS232"
@@ -448,6 +498,16 @@
 				(justify right)
 			)
 			(uuid "3fffd7f6-deca-481b-9042-fd52a137d899")
+		)
+		(pin "RS232_EN" input
+			(at 114.3 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "a3cd8777-9072-486b-832f-afa73d5b7702")
 		)
 		(instances
 			(project "Node_RS232"

@@ -7,7 +7,7 @@
 	(lib_symbols)
 	(wire
 		(pts
-			(xy 114.3 106.68) (xy 129.54 106.68)
+			(xy 114.3 109.22) (xy 129.54 109.22)
 		)
 		(stroke
 			(width 0)
@@ -77,6 +77,26 @@
 	)
 	(wire
 		(pts
+			(xy 114.3 104.14) (xy 129.54 104.14)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c9f13b9-957e-4bb9-891f-20e368327455")
+	)
+	(wire
+		(pts
+			(xy 114.3 97.79) (xy 129.54 97.79)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6419229e-05bb-4700-b910-14becf01a4ee")
+	)
+	(wire
+		(pts
 			(xy 182.88 96.52) (xy 167.64 96.52)
 		)
 		(stroke
@@ -84,6 +104,16 @@
 			(type default)
 		)
 		(uuid "918cfeb1-2ec6-45b8-a2d9-c0d341bbc76e")
+	)
+	(wire
+		(pts
+			(xy 114.3 81.28) (xy 129.54 81.28)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9d9523df-ab26-4553-87a5-f6e47f4fc618")
 	)
 	(wire
 		(pts
@@ -97,23 +127,23 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 109.22) (xy 129.54 109.22)
+			(xy 114.3 111.76) (xy 129.54 111.76)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "bb9d15e1-61d4-4956-a247-f86063b9e22d")
+		(uuid "e74679a1-2b91-4b17-91cf-4513e2341b36")
 	)
 	(wire
 		(pts
-			(xy 114.3 99.06) (xy 129.54 99.06)
+			(xy 114.3 100.33) (xy 129.54 100.33)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "f3305d40-f779-4408-ad22-bff8851453e3")
+		(uuid "ec131fe7-51ec-4d55-be77-094030c53393")
 	)
 	(sheet
 		(at 129.54 69.85)
@@ -186,7 +216,7 @@
 			(uuid "73b82851-951f-4fd9-9500-1ab6c51ed4bd")
 		)
 		(pin "RS485_RX" input
-			(at 129.54 106.68 180)
+			(at 129.54 109.22 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -196,7 +226,7 @@
 			(uuid "8fc195a7-1b4d-45d0-b7aa-e53b5fc0cbe8")
 		)
 		(pin "RS485_TX" output
-			(at 129.54 109.22 180)
+			(at 129.54 111.76 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -204,16 +234,6 @@
 				(justify left)
 			)
 			(uuid "a34f29d8-5574-430a-8e62-6cc0d6339ab7")
-		)
-		(pin "RS485_DR" output
-			(at 129.54 99.06 180)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-			(uuid "f5fb7d85-9fea-4296-b007-9319fa9d6e62")
 		)
 		(pin "RAK_BOOT" input
 			(at 167.64 99.06 0)
@@ -254,6 +274,46 @@
 				(justify left)
 			)
 			(uuid "f3da0c15-9833-4ddb-a98a-8f2c931e25d5")
+		)
+		(pin "~{RS485_RE}" output
+			(at 129.54 100.33 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "69a357f0-f9f4-4cf5-9f56-198dbaac1fca")
+		)
+		(pin "RS485_DE" output
+			(at 129.54 97.79 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "2d85a7bb-c9a4-44c0-86aa-6741f992736a")
+		)
+		(pin "~{POWER_SAVE}" output
+			(at 129.54 81.28 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "44fd3839-d778-48e4-90b9-ea94d654a8a3")
+		)
+		(pin "RS485_PWREN" output
+			(at 129.54 104.14 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "e2c70d7e-aab9-413a-91cd-de2088706e91")
 		)
 		(instances
 			(project "Node_RS485"
@@ -391,7 +451,7 @@
 			)
 			(uuid "cf34ab67-9a52-4619-b8aa-f4e332cad4b5")
 		)
-		(pin "12V_EN" input
+		(pin "9V_EN" input
 			(at 114.3 77.47 0)
 			(effects
 				(font
@@ -410,6 +470,16 @@
 				(justify right)
 			)
 			(uuid "f4fd3b27-86a1-44a7-a88c-23d78035f573")
+		)
+		(pin "~{POWER_SAVE}" input
+			(at 114.3 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "aef8f1c6-451d-4dc8-942b-29c1cf35f207")
 		)
 		(instances
 			(project "Node_RS485"
@@ -450,7 +520,7 @@
 			)
 		)
 		(pin "RS485_TX" input
-			(at 114.3 109.22 0)
+			(at 114.3 111.76 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -460,7 +530,7 @@
 			(uuid "ea4da2d2-b84a-465c-b931-1009f0700848")
 		)
 		(pin "RS485_RX" output
-			(at 114.3 106.68 0)
+			(at 114.3 109.22 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -469,15 +539,35 @@
 			)
 			(uuid "7f4c534c-be9a-4469-8b79-5126548ce1de")
 		)
-		(pin "RS485_DR" input
-			(at 114.3 99.06 0)
+		(pin "~{RS485_RE}" input
+			(at 114.3 100.33 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify right)
 			)
-			(uuid "44e4f82b-8e66-4164-866c-cbc24002771a")
+			(uuid "fdec4fc1-46e6-4f17-a98b-091cc9927da7")
+		)
+		(pin "RS485_DE" input
+			(at 114.3 97.79 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "cc3e66a3-95dc-4794-ad48-398e1c2144d5")
+		)
+		(pin "RS485_EN" input
+			(at 114.3 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "b548759f-fec3-449e-8cf4-11595273247d")
 		)
 		(instances
 			(project "Node_RS485"

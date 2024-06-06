@@ -2142,10 +2142,6 @@
 		(uuid "da73b469-279d-4af7-8b7e-c552ea434c24")
 	)
 	(no_connect
-		(at 198.12 90.17)
-		(uuid "0c5f2024-eb2d-4998-b1c8-0af0ac950e89")
-	)
-	(no_connect
 		(at 198.12 102.87)
 		(uuid "15248315-b7c3-4195-9a8a-1436c56b498d")
 	)
@@ -2162,7 +2158,7 @@
 		(uuid "4171a98a-a683-4df8-b256-907cea7f4b14")
 	)
 	(no_connect
-		(at 198.12 92.71)
+		(at 147.32 110.49)
 		(uuid "4f8a7c57-726b-4c74-a641-3172ac64d0fd")
 	)
 	(no_connect
@@ -2172,10 +2168,6 @@
 	(no_connect
 		(at 147.32 85.09)
 		(uuid "5a5cf1c4-ad6c-4d46-ace2-ea167bc3deba")
-	)
-	(no_connect
-		(at 198.12 77.47)
-		(uuid "7eb48d32-cfae-40bd-b0b7-d82d9994bfaf")
 	)
 	(no_connect
 		(at 198.12 105.41)
@@ -2190,7 +2182,7 @@
 		(uuid "b4a0bbf9-3e80-479b-9fda-896a181f1a84")
 	)
 	(no_connect
-		(at 198.12 85.09)
+		(at 198.12 107.95)
 		(uuid "b7c5d6e8-7a3b-438d-8906-5dc0c8f85963")
 	)
 	(no_connect
@@ -2732,13 +2724,13 @@
 	)
 	(hierarchical_label "SENSOR_PWRON"
 		(shape output)
-		(at 147.32 110.49 180)
+		(at 198.12 92.71 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
 		(uuid "5106972b-6202-4f9c-b65b-99a29b1857b7")
 	)
@@ -2754,9 +2746,21 @@
 		)
 		(uuid "574a653c-273d-4852-9cce-6c8be72ea972")
 	)
+	(hierarchical_label "ANA_PWRON"
+		(shape output)
+		(at 198.12 90.17 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "9874b6eb-022e-43d3-b2d6-2c938a0d3a31")
+	)
 	(hierarchical_label "ACT_LED"
 		(shape input)
-		(at 198.12 107.95 0)
+		(at 198.12 85.09 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -2789,6 +2793,18 @@
 			(justify right)
 		)
 		(uuid "caef13f4-aca6-4071-9a4a-dd7fd655df31")
+	)
+	(hierarchical_label "~{POWER_SAVE}"
+		(shape output)
+		(at 198.12 77.47 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "cf1585a7-f765-45b8-9616-038a2bbc129d")
 	)
 	(hierarchical_label "BATT_READ"
 		(shape input)
@@ -3129,7 +3145,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10K"
+		(property "Value" "100K"
 			(at 90.932 83.82 0)
 			(effects
 				(font
@@ -4074,10 +4090,11 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10K"
+		(property "Value" "20K"
 			(at 113.792 69.85 0)
 			(effects
 				(font
+					(face "KiCad Font")
 					(size 1.27 1.27)
 				)
 				(justify left)
@@ -4581,10 +4598,11 @@
 				(justify left)
 			)
 		)
-		(property "Value" "10K"
+		(property "Value" "20K"
 			(at 220.218 107.95 0)
 			(effects
 				(font
+					(face "KiCad Font")
 					(size 1.27 1.27)
 				)
 				(justify left)

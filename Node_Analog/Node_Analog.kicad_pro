@@ -480,14 +480,52 @@
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "clearance": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25,
+        "diff_pair_width": 0.2,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "cc",
+        "pcb_color": "rgb(0, 0, 132)",
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "track_width": 0.2,
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "wire_width": 6
       }
     ],
     "meta": {
       "version": 3
     },
-    "net_colors": null,
-    "netclass_assignments": null,
-    "netclass_patterns": []
+    "net_colors": {
+      "+3V3": "rgb(194, 0, 0)",
+      "+5V": "rgb(221, 133, 0)",
+      "+5VA": "rgb(221, 133, 0)",
+      "+BATT": "rgb(194, 194, 0)",
+      "/Analog/ANALOG_OUT": "rgb(0, 194, 0)",
+      "/ESP32-C3_BLE/ESP_USB_D_N": "rgb(194, 0, 194)",
+      "/ESP32-C3_BLE/ESP_USB_D_P": "rgb(194, 0, 194)",
+      "/ESP32-C3_BLE/OTA_BOOT": "rgb(0, 194, 194)",
+      "/ESP32-C3_BLE/OTA_RST": "rgb(0, 194, 194)",
+      "/ESP32-C3_BLE/UART1_RX": "rgb(0, 194, 194)",
+      "/ESP32-C3_BLE/UART1_TX": "rgb(0, 194, 194)",
+      "GND": "rgb(132, 132, 132)",
+      "Net-(J2-Pin_4)": "rgb(0, 132, 0)"
+    },
+    "netclass_assignments": {
+      "/ESP32-C3_BLE/OTA_RST": "cc"
+    },
+    "netclass_patterns": [
+      {
+        "netclass": "cc",
+        "pattern": "/ESP32-*"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {

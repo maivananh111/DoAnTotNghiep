@@ -17,6 +17,16 @@
 	)
 	(wire
 		(pts
+			(xy 114.3 82.55) (xy 129.54 82.55)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "1e8f96fb-c13e-4eea-ae6a-f1626161287d")
+	)
+	(wire
+		(pts
 			(xy 182.88 91.44) (xy 167.64 91.44)
 		)
 		(stroke
@@ -42,8 +52,19 @@
 		(stroke
 			(width 0)
 			(type default)
+			(color 255 0 0 1)
 		)
 		(uuid "3add67c4-0a3e-4a97-b62c-635d3b9d8de4")
+	)
+	(wire
+		(pts
+			(xy 114.3 78.74) (xy 129.54 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4b00ba61-c486-469d-9770-535767e213b5")
 	)
 	(wire
 		(pts
@@ -57,7 +78,7 @@
 	)
 	(wire
 		(pts
-			(xy 114.3 77.47) (xy 129.54 77.47)
+			(xy 114.3 76.2) (xy 129.54 76.2)
 		)
 		(stroke
 			(width 0)
@@ -94,6 +115,29 @@
 			(type default)
 		)
 		(uuid "a188858c-b966-4ba6-94ba-bcbb3b724480")
+	)
+	(netclass_flag ""
+		(length 2.54)
+		(shape round)
+		(at 173.99 96.52 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "cc319914-47ae-4ca1-834d-8b8f7b736ba5")
+		(property "Netclass" "cc"
+			(at 174.6885 93.98 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+					(italic yes)
+				)
+				(justify left)
+			)
+		)
 	)
 	(sheet
 		(at 129.54 69.85)
@@ -186,7 +230,7 @@
 			(uuid "79550741-cd20-4773-a116-8803e86903bd")
 		)
 		(pin "SENSOR_PWRON" output
-			(at 129.54 77.47 180)
+			(at 129.54 76.2 180)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -214,6 +258,26 @@
 				(justify left)
 			)
 			(uuid "c6081a25-e814-4d36-ada9-0519f775b3ef")
+		)
+		(pin "ANA_PWRON" output
+			(at 129.54 78.74 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "b3457224-9c7d-4f9c-8bee-31caf95dcc21")
+		)
+		(pin "~{POWER_SAVE}" output
+			(at 129.54 82.55 180)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+			(uuid "1e4d95cd-6307-43b7-98e0-0fd3e83fc38c")
 		)
 		(instances
 			(project "Node_Analog"
@@ -352,7 +416,7 @@
 			(uuid "cf34ab67-9a52-4619-b8aa-f4e332cad4b5")
 		)
 		(pin "5V_EN" input
-			(at 114.3 77.47 0)
+			(at 114.3 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -370,6 +434,26 @@
 				(justify right)
 			)
 			(uuid "1d1e003a-b7f9-47a8-9948-30ed36b82e0b")
+		)
+		(pin "24V_EN" input
+			(at 114.3 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "c24ae19c-ac21-4ca1-8910-808a9a04e223")
+		)
+		(pin "~{POWER_SAVE}" input
+			(at 114.3 82.55 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+			(uuid "0b6bc52f-46f8-4700-ba92-7e9e61ab4f3b")
 		)
 		(instances
 			(project "Node_Analog"

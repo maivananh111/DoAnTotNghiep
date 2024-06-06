@@ -486,7 +486,20 @@
     "meta": {
       "version": 3
     },
-    "net_colors": null,
+    "net_colors": {
+      "+3V3": "rgb(194, 0, 0)",
+      "+5V": "rgb(221, 133, 0)",
+      "+9V": "rgb(194, 194, 0)",
+      "/ESP32-C3_BLE/ESP_UART0_RX": "rgb(0, 194, 194)",
+      "/ESP32-C3_BLE/ESP_UART0_TX": "rgb(0, 194, 194)",
+      "/ESP32-C3_BLE/ESP_USB_D_N": "rgb(194, 0, 194)",
+      "/ESP32-C3_BLE/ESP_USB_D_P": "rgb(194, 0, 194)",
+      "/ESP32-C3_BLE/UART1_RX": "rgb(0, 194, 194)",
+      "/ESP32-C3_BLE/UART1_TX": "rgb(0, 194, 194)",
+      "/RAK3172_LoRa/RS232_RX": "rgb(0, 194, 0)",
+      "/RAK3172_LoRa/RS232_TX": "rgb(0, 194, 0)",
+      "GND": "rgb(132, 132, 132)"
+    },
     "netclass_assignments": null,
     "netclass_patterns": []
   },
