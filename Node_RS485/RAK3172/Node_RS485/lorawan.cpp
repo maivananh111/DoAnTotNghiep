@@ -6,7 +6,7 @@
 
 
 
-static lorawan_state_t _state = LoRaWAN_START;
+static lorawan_eventid_t _state = LoRaWAN_START;
 static lorawan_idle_mode_t _idlemode = LoRaWAN_IDLE_SLEEP;
 
 static lorawan_config_t *_pconfig = NULL;
@@ -24,7 +24,20 @@ static uint32_t _time_to_sleep = 0, _time_to_start_sleep = 0, _time_slept = 0;
 static uint8_t _devstatus_len = 0, _data_to_send_len = 0;
 static uint8_t *_pdevstatus_to_send = NULL, *_pdata_to_send = NULL;
 static bool _confirm = false;
+static uint8_t _send_devstatus_cnt = 0;
 
+static const char *evt_str[] = {
+    "LoRaWAN_JOIN_ERROR",
+    "LoRaWAN_SEND_ERROR",
+    "LoRaWAN_START",
+    "LoRaWAN_CONFIG",
+    "LoRaWAN_JOINING",
+    "LoRaWAN_JOINED",
+    "LoRaWAN_DEVSTATUS",
+    "LoRaWAN_IDLE",
+    "LoRaWAN_SEND",
+    "LoRaWAN_SENT",
+};
 
 static bool _lorawan_config(void);
 static bool _lorawan_out_of_network(void);
@@ -42,7 +55,7 @@ static void joinCallback(int32_t status){
 
 static void sendCallback(int32_t status){
     if (status != RAK_LORAMAC_STATUS_OK){
-        Serial.printf("Sending failed, error: %d\r\n", status);
+        Serial.printf("\r\nSending failed, error: %d", status);
     }
     _sent = true;
 }
@@ -50,10 +63,11 @@ static void sendCallback(int32_t status){
 static void recvCallback(SERVICE_LORA_RECEIVE_T *data){
     if (data->BufferSize > 0) {
         Serial.println("Something received!");
-        for (int i = 0; i < data->BufferSize; i++) {
-            Serial.printf("%x", data->Buffer[i]);
-        }
-        Serial.print("\r\n");
+
+        for (int i = 0; i < data->BufferSize; i++) 
+            Serial.printf("0x%02x|", data->Buffer[i]);
+        
+        Serial.println();
     }
 }
 
@@ -98,14 +112,18 @@ static bool _lorawan_config(void){
         Serial.printf("LoRaWan - set network join mode is incorrect! \r\n");
         return false;
     }
-    // if (!api.lorawan.txp.set(22)) {
-    //     Serial.printf("LoRaWan - set tx power is incorrect! \r\n");
-    //     return false;
-    // }
-    // if (!api.lorawan.dr.set(2)) {
-    //     Serial.printf("LoRaWan - set tx power is incorrect! \r\n");
-    //     return false;
-    // }
+        if(!api.lorawan.registerJoinCallback(joinCallback)){
+        Serial.printf("LoRaWan - register join callback failed! \r\n");
+        return false;
+    }
+    if(!api.lorawan.registerSendCallback(sendCallback)){
+        Serial.printf("LoRaWan - register send callback failed! \r\n");
+        return false;
+    }
+    if(!api.lorawan.registerRecvCallback(recvCallback)){
+        Serial.printf("LoRaWan - register receive callback failed! \r\n");
+        return false;
+    }
 
     return true;
 }
@@ -134,7 +152,7 @@ static bool _lorawan_start(void){
         Serial.printf("LoRaWan - set adaptive data rate is incorrect! \r\n");
         return false;
     }
-    if (!api.lorawan.rety.set(5)) {
+    if (!api.lorawan.rety.set(1)) {
         Serial.printf("LoRaWan - set retry times is incorrect! \r\n");
         return false;
     }
@@ -142,31 +160,15 @@ static bool _lorawan_start(void){
         Serial.printf("LoRaWan - set confirm mode is incorrect! \r\n");
         return false;
     }
-    if(!api.lorawan.registerJoinCallback(joinCallback)){
-        Serial.printf("LoRaWan - register join callback failed! \r\n");
-        return false;
-    }
-    if(!api.lorawan.registerSendCallback(sendCallback)){
-        Serial.printf("LoRaWan - register send callback failed! \r\n");
-        return false;
-    }
-    if(!api.lorawan.registerRecvCallback(recvCallback)){
-        Serial.printf("LoRaWan - register receive callback failed! \r\n");
-        return false;
-    }
 
     return true;
-}
-
-static void _lorawan_send_devstatus(uint8_t *pdata){
-
 }
 
 static bool _lorawan_send_data(void){
     if(_pdata_to_send == NULL || _data_to_send_len == 0) return false;
 
     if(!api.lorawan.send(_data_to_send_len, _pdata_to_send, LORAWAN_DEFAULT_FPORT, _confirm, LORAWAN_MAX_RESEND)) {
-        Serial.println("Send failed...");
+        Serial.print("\r\nSend failed...");
         _send_fail_cnt++;
         _sent = false;
 
@@ -185,6 +187,9 @@ static bool _lorawan_send_data(void){
 
 
 
+const char *lorawan_eventid_to_str(lorawan_eventid_t evt){
+    return evt_str[evt];
+}
 
 bool lorawan_init(lorawan_config_t *pconfig){
     if(pconfig) 
@@ -294,6 +299,12 @@ void lorawan_handler(void){
                     }
                 }
             }
+            else{
+                if(millis() - _time_start_pre_period > _pconfig->period){
+                    _state = LoRaWAN_SEND; 
+                    if(_event_handler) _event_handler(_state, _event_param);
+                }
+            }
         }
         break;
         case LoRaWAN_SEND:
@@ -318,7 +329,9 @@ void lorawan_handler(void){
         break;
         case LoRaWAN_SENT:
             if(_pdata_to_send) free(_pdata_to_send);
+
             _state = LoRaWAN_IDLE;
+
             if(_event_handler) _event_handler(_state, _event_param);
         break;
         default:

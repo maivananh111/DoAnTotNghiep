@@ -17,7 +17,7 @@ config_node_t cfg;
 void usr_btn_handler(void);
 void viewdata_timer_handler(void *param);
 void viewled_timer_handler(void *param);
-void lorawan_event_handler(lorawan_state_t, void *);
+void lorawan_event_handler(lorawan_eventid_t, void *);
 
 void read_nodeconfig(void);
 
@@ -44,66 +44,44 @@ void setup(void) {
 void loop(void) {
     lorawan_handler();
 
-    if(viewmode == true){ 
-        if(viewmode_flag == 1){
-            char *viewdata = create_send_data(true);
-            Serial.write(viewdata);
-            if(viewdata) free(viewdata);
-            viewmode_flag = 0;
-        }
+    if(viewmode == true && viewmode_flag == 1){ 
+        char *viewdata = create_send_data(true);
+
+        Serial.write(viewdata);
+        if(viewdata) free(viewdata);
+
+        viewmode_flag = 0;
     }
 }
 
 
-void lorawan_event_handler(lorawan_state_t state, void *param){
+void lorawan_event_handler(lorawan_eventid_t event, void *param){
     char *senddata;
 
-    switch(state){
+    Serial.printf("\r\nLORAWANEVENT - %s", lorawan_eventid_to_str(event));
+    switch(event){
         case LoRaWAN_JOIN_ERROR:
-            Serial.println("LORAWANEVENT - LoRaWAN_JOIN_ERROR");
-            if(viewmode == false) api.system.reboot();
-        break;
         case LoRaWAN_SEND_ERROR:
-            Serial.println("LORAWANEVENT - LoRaWAN_SEND_ERROR");
             if(viewmode == false) api.system.reboot();
         break;
 
         case LoRaWAN_START:
-            Serial.println("LORAWANEVENT - LoRaWAN_START");
             lorawan_init(&cfg.lorawan);
             lorawan_set_idle_mode(LoRaWAN_IDLE_SLEEP);
         break;
-        case LoRaWAN_CONFIG:
-            Serial.println("LORAWANEVENT - LoRaWAN_CONFIG");
-        break;
-        case LoRaWAN_JOINING:
-            Serial.println("LORAWANEVENT - LoRaWAN_JOINING");
-        break;
         case LoRaWAN_JOINED:
-            Serial.println("LORAWANEVENT - LoRaWAN_JOINED");
             led_on();
             delay(1000);
             led_off();
         break;
-        case LoRaWAN_DEVSTATUS:
-            Serial.println("LORAWANEVENT - LoRaWAN_DEVSTATUS");
-        break;
-        case LoRaWAN_IDLE:
-            Serial.println("LORAWANEVENT - LoRaWAN_IDLE");
-        break;
         case LoRaWAN_SEND:{
-            // Serial.println("LORAWANEVENT - LoRaWAN_SEND");
             led_on();
             senddata = create_send_data(false);
             lorawan_set_send_param((uint8_t *)senddata, strlen(senddata), true);
             led_off();
         }
         break;
-        case LoRaWAN_SENT:
-            Serial.println("LORAWANEVENT - LoRaWAN_SENT");
-        break;
         default:
-            Serial.println("LORAWANEVENT - UNKNOWN");
         break;
     }
 }
@@ -134,6 +112,7 @@ void usr_btn_handler(void){
         else{
             Serial.println("WORKINGMODE - LORAWAN ONLY.");
             wf_pwroff();
+            led_off();
 
             api.system.timer.stop(VIEWDATA_TIMER);
             api.system.timer.stop(VIEWLED_TIMER);
@@ -156,7 +135,6 @@ void read_nodeconfig(void){
 
     wf_pwron();
     bool config_success = config_node(&cfg);
-    delay(500);
     wf_pwroff();
 
     if(config_success == false) api.system.reboot();

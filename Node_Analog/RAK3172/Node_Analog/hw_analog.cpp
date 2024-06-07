@@ -41,10 +41,9 @@ void sensor_pwroff(void){
 * WiFi module power control.
 */
 void wf_pwron(void){
-    delay(500);
     pinMode(WF_PWR_PIN, OUTPUT);
     digitalWrite(WF_PWR_PIN, LOW);
-    delay(2000);
+    delay(1000);
 }
 void wf_pwroff(void){
     digitalWrite(WF_PWR_PIN, HIGH);
@@ -78,15 +77,31 @@ float analog_get(void){
     uint32_t x = 0;
     
     sensor_pwron();
-
+#if FAKE_DATA
+    #ifdef NODE_4_20MA
+        float ana = (float)random(5000, 6000)/1000.0; 
+    #endif
+    #ifdef NODE_0_10V
+        float ana = (float)random(2500, 3000)/1000.0; 
+    #endif
+#else
     for(int i=0; i<ANALOG_SAMPLE_NUMBER; i++)
         x += analogRead(SENSOR_ANALOG_PIN);
     x /= ANALOG_SAMPLE_NUMBER;
     
     float ana = (float)x * ANALOG_CALIB_PARAM_A + ANALOG_CALIB_PARAM_B;
-    // Serial.printf("ADC = %d, VOL = %.02f\r\n", x, ana);
+#endif
+    
+   
     float ret = ana * (float)analog_param_a + (float)analog_param_b;
-
+#if DEBUG_ANALOG
+    #ifdef NODE_4_20MA
+        Serial.printf("ADC = %d, AMP = %.02f, DATA = %.02f\r\n", x, ana, ret);
+    #endif
+    #ifdef NODE_0_10V
+        Serial.printf("ADC = %d, VOL = %.02f, DATA = %.02f\r\n", x, ana, ret);
+    #endif
+#endif
     sensor_pwroff();
 
     return ret;
@@ -99,8 +114,8 @@ void brd_hw_init(void (*btn_wakeup_handler)(void)){
 
     pinMode(LED_ACT_PIN, OUTPUT);
     pinMode(USR_BTN_PIN, INPUT);
-    attachInterrupt(USR_BTN_PIN, btn_wakeup_handler, FALLING);
 
+    attachInterrupt(USR_BTN_PIN, btn_wakeup_handler, FALLING);
     analogReadResolution(12);
 }
 

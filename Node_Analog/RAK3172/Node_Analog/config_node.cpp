@@ -25,40 +25,28 @@ void send_eui_to_wf(void){
     deveui[6] = (UID_H >> 16) & 0xFF;
     deveui[7] = (UID_H >> 24) & 0xFF;
 
-    char buf[17] = {0};
-    sprintf(buf, "%08x%08x", UID_H, UID_L);
-    root["deveui"] = buf;
-
-    String jsonString = JSON.stringify(root);
-    Serial.write(jsonString.c_str());
+    char buf[30] = {0};
+    sprintf(buf, "{\"deveui\":\"%08x%08x\"}", UID_H, UID_L);
+    Serial.write(buf);
 }
 
 bool config_node(config_node_t *conf_data){
     String cfg_str = "";
-    uint32_t timeout = 0;
 
     /**
      * Send request config data to ESP32.
     */
-   uint8_t out_cnt = 0;
-    timeout = millis();
+    uint32_t timeout = millis();
     send_eui_to_wf();
     while(!Serial.available()){
-        if(millis() - timeout > 5000){
-            out_cnt++;
-            if(out_cnt == 5) 
-                return false;
-            
-            send_eui_to_wf();
-            timeout = millis();
-        }
+        if(millis() - timeout > 2000) return false;
     }
 
     /**
      * Read config data from ESP32.
     */
     while (Serial.available())
-        cfg_str += Serial.readStringUntil((char)0xFE);
+        cfg_str += Serial.readStringUntil('#');
     Serial.println();
 
     /**

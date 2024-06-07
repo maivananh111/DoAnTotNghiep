@@ -19,8 +19,8 @@ typedef enum{
 } lorawan_idle_mode_t;
 
 typedef enum{
-    LoRaWAN_JOIN_ERROR = -2,
-    LoRaWAN_SEND_ERROR = -1,
+    LoRaWAN_JOIN_ERROR,
+    LoRaWAN_SEND_ERROR,
     LoRaWAN_START,
     LoRaWAN_CONFIG,
     LoRaWAN_JOINING,
@@ -29,9 +29,9 @@ typedef enum{
     LoRaWAN_IDLE,
     LoRaWAN_SEND,
     LoRaWAN_SENT
-} lorawan_state_t;
+} lorawan_eventid_t;
 
-typedef void (*lorawan_event_handler_fn_t)(lorawan_state_t, void *);
+typedef void (*lorawan_event_handler_fn_t)(lorawan_eventid_t, void *);
 
 
 bool lorawan_init(lorawan_config_t *pconfig);
@@ -42,3 +42,5 @@ void lorawan_set_send_param(uint8_t *pdata, uint8_t len, bool req_confirm);
 int lorawan_get_join_state(void);
 
 void lorawan_handler(void);
+
+const char *lorawan_eventid_to_str(lorawan_eventid_t evt);

@@ -3,7 +3,12 @@
 
 
 
-uint8_t ligo_sp_rs232_checksum(uint8_t *data, uint8_t size){
+
+static uint8_t ligo_sp_rs232_checksum(uint8_t *data, uint8_t size);
+
+
+
+static uint8_t ligo_sp_rs232_checksum(uint8_t *data, uint8_t size){
     uint8_t crc = 0;
 
     for(uint8_t j=0; j<size; j++){
@@ -22,7 +27,6 @@ uint8_t ligo_sp_rs232_checksum(uint8_t *data, uint8_t size){
 
     return crc;
 }
-
 void ligo_sp_rs232_request(void){
     uint8_t buf[4] = {0};
     buf[0] = 0x31;
@@ -32,22 +36,51 @@ void ligo_sp_rs232_request(void){
 
     Serial1.write(buf, 4); 
 }
-
 char *ligo_sp_rs232_response(void){
     uint32_t tick = millis();
     while(!Serial1.available()){
-        if(millis() - tick > 1000) return NULL;
+        if(millis() - tick > 3000) return NULL;
         delay(100);
     }
 
     uint8_t buf[12];
     uint8_t i = 0;
-    while(Serial1.available())
+    while(Serial1.available() && i<12)
         buf[i++] = (uint8_t)Serial1.read();
 
     char *resp = (char *)malloc(65);
     memset(resp, 0, 65);
-    sprintf(resp, "{\"temperature\":%d,\"relative_level\":%d}", (int)(buf[3]*100), (int)((buf[4]<<8 | buf[5])*100));
+    sprintf(resp, "{\"temperature\":%d,\"relative_level\":%d}", (int)(buf[3]*100), (int)((buf[4]<<8 | buf[5])));
 
     return resp;
 }
+
+
+
+
+
+void incubator_ir_co2_request(void){
+
+}
+char *incubator_ir_co2_response(void){
+    char *resp = (char *)malloc(65);
+    memset(resp, 0, 65);
+    sprintf(resp, "{\"co2\":%d}", (int)(random(3000, 4000)));
+
+    return resp;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

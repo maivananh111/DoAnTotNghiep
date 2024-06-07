@@ -13,6 +13,11 @@ rs232_sensor_desc_t ligo_sp_rs232 = {
     .request  = ligo_sp_rs232_request,
     .response = ligo_sp_rs232_response
 };
+rs232_sensor_desc_t incubator_ir_co2 = {
+    .mpn      = "INCUBATOR IR-CO2",
+    .request  = incubator_ir_co2_request,
+    .response = incubator_ir_co2_response
+};
 
 
 uint8_t sensor_desc_set_size = 0;
@@ -38,7 +43,7 @@ void sensor_pwron(void){
     pinMode(SENSOR_CIRCUIT_PWR_PIN, OUTPUT);
     digitalWrite(SENSOR_PWR_PIN, HIGH);
     digitalWrite(SENSOR_CIRCUIT_PWR_PIN, HIGH);
-    delay(5000);
+    delay(1000);
 }
 void sensor_pwroff(void){
     digitalWrite(SENSOR_PWR_PIN, LOW);
@@ -50,10 +55,9 @@ void sensor_pwroff(void){
 * WiFi module.
 */
 void wf_pwron(void){
-    delay(500);
     pinMode(WF_PWR_PIN, OUTPUT);
     digitalWrite(WF_PWR_PIN, LOW);
-    delay(2000);
+    delay(1000);
 }
 void wf_pwroff(void){
     digitalWrite(WF_PWR_PIN, HIGH);
@@ -85,21 +89,18 @@ float batt_voltage(void){
 
 
 void brd_hw_init(void (*btn_wakeup_handler)(void)){   
-    // power_high_performance();
-
     Serial.begin(115200, RAK_AT_MODE);
     Serial.println("Startup");
 
     pinMode(LED_ACT_PIN, OUTPUT);
     pinMode(USR_BTN_PIN, INPUT);
+
     attachInterrupt(USR_BTN_PIN, btn_wakeup_handler, FALLING);
     analogReadResolution(12);
 
     Serial1.begin(9600, RAK_CUSTOM_MODE);
     sensor_desc_set[0] = &ligo_sp_rs232;
-
-    // pinMode(SENSOR_PWR_PIN, OUTPUT);
-    // digitalWrite(SENSOR_PWR_PIN, HIGH);
+    sensor_desc_set[1] = &incubator_ir_co2;
 }
 
 char *rs232_reqdata(void){

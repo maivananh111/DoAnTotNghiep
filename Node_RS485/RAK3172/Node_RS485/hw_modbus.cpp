@@ -58,10 +58,9 @@ void sensor_pwroff(void){
 * WiFi module.
 */
 void wf_pwron(void){
-    delay(500);
     pinMode(WF_PWR_PIN, OUTPUT);
     digitalWrite(WF_PWR_PIN, LOW);
-    delay(2000);
+    delay(1000);
 }
 void wf_pwroff(void){
     digitalWrite(WF_PWR_PIN, HIGH);
@@ -92,16 +91,13 @@ float batt_voltage(void){
 }
 
 
-void brd_hw_init(void (*btn_wakeup_handler)(void)){   
-    power_high_performance();
-    
+void brd_hw_init(void (*btn_wakeup_handler)(void)){       
     Serial.begin(115200, RAK_AT_MODE);
     Serial.println("Startup");
 
     pinMode(LED_ACT_PIN, OUTPUT);
     pinMode(USR_BTN_PIN, INPUT);
 
-    digitalWrite(POWER_SAVE_ENABLE, HIGH);
     attachInterrupt(USR_BTN_PIN, btn_wakeup_handler, FALLING);
     analogReadResolution(12);
 }

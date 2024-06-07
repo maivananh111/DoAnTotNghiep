@@ -4,9 +4,11 @@
 #include "Arduino.h"
 
 
-#define NODE_4_20MA
-// #define NODE_0_10V
+// #define NODE_4_20MA
+#define NODE_0_10V
 
+#define DEBUG_ANALOG 0
+#define FAKE_DATA 1
 
 
 #define POWER_SAVE_ENABLE      PA11
@@ -25,8 +27,8 @@
 
 #define ANALOG_SAMPLE_NUMBER 10
 #ifdef NODE_4_20MA
-#define ANALOG_CALIB_PARAM_A (0.00610282)
-#define ANALOG_CALIB_PARAM_B (3.454295191)
+#define ANALOG_CALIB_PARAM_A (0.0055890411)
+#define ANALOG_CALIB_PARAM_B (1.03465753425)
 #define ANALOG_VAL_LOW       (4.0)
 #define ANALOG_VAL_HIGH      (20.0)
 #endif
@@ -37,8 +39,8 @@
 #define ANALOG_VAL_HIGH      (10.0)
 #endif
 
-
-
+// 790 = 5.5mA
+// 425 = 3.46mA
 
 
 
